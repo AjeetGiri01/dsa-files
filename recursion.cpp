@@ -1,4 +1,5 @@
 #include <iostream>
+#include <vector>
 using namespace std;
 
 //n to 1..
@@ -29,6 +30,12 @@ int sum(int n) {
     return n + sum(n - 1);
 }
 
+//check if array is sorted or not 
+bool isSorted(vector<int> arr, int n){
+    if(n==0 || n==1) return true;
+    return arr[n-1] >= arr[n-2] && isSorted(arr, n-1);
+}
+
 int main() {
     printNums(5);
 
@@ -38,5 +45,8 @@ int main() {
     cout << f << endl;
     
     cout << sum(5) << endl;
+
+    vector<int> arr = {2, 4, 5, 12, 34};
+    cout << isSorted(arr, 5) << endl;
     return 0;
 }
