@@ -36,6 +36,23 @@ bool isSorted(vector<int> arr, int n){
     return arr[n-1] >= arr[n-2] && isSorted(arr, n-1);
 }
 
+//print all subsets..
+void printSubsets(vector<int>& arr2, vector<int>& ans, int i) {
+    if(i == arr2.size()) {
+        for(int val : ans) {
+            cout << val << " ";
+        }
+        cout << endl;
+        return;
+    }
+    //include
+    ans.push_back(arr2[i]);
+    printSubsets(arr2, ans, i+1);
+    ans.pop_back(); //backtrack
+    //exclude
+    printSubsets(arr2, ans, i+1);
+}
+
 int main() {
     printNums(5);
 
@@ -48,5 +65,9 @@ int main() {
 
     vector<int> arr = {2, 4, 5, 12, 34};
     cout << isSorted(arr, 5) << endl;
+
+    vector<int> arr2 = {1, 2, 3};
+    vector<int> ans; //store subsets
+    printSubsets(arr2, ans, 0);
     return 0;
 }
